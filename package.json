@@ -1,0 +1,20 @@
+{
+  "name": "new-folder",
+  "version": "1.0.0",
+  "description": "A full-featured, responsive, and animated Hospital Management System (HMS) website using HTML, Tailwind CSS, JavaScript, and Supabase as the backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
+    "tailwindcss": "^4.1.7"
+  }
+}

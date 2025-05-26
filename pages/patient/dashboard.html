@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://unpkg.com https://cdn.tailwindcss.com https://*.supabase.co; connect-src 'self' https://*.supabase.co; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https:; font-src 'self' data: https:;">
+    <title>Patient Dashboard - Hospital Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-900">Patient Dashboard</h1>
+                <div class="flex items-center">
+                    <span class="text-gray-700 mr-4">Welcome, <span id="patient-name">Patient</span></span>
+                    <button id="logout-btn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium transition">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="bg-white shadow rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Welcome to Your Patient Dashboard</h2>
+                <p class="text-gray-600">You have successfully logged in as a patient. From here, you can manage your appointments and view your medical records.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dashboard Cards -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-blue-500 bg-opacity-10 text-blue-500 mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">My Appointments</h3>
+                            <p class="text-gray-600">Schedule and view your appointments</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white shadow rounded-lg p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-green-500 bg-opacity-10 text-green-500 mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Medical Records</h3>
+                            <p class="text-gray-600">View your medical history</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white shadow rounded-lg p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-purple-500 bg-opacity-10 text-purple-500 mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Prescriptions</h3>
+                            <p class="text-gray-600">View your current prescriptions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white shadow mt-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <p class="text-center text-gray-500 text-sm">© 2025 Hospital Management System. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Supabase JS Library -->
+    <script src="../../node_modules/@supabase/supabase-js/dist/umd/supabase.js"></script>
+    <!-- Auth JS -->
+    <script src="../../js/auth.js"></script>
+    <script>
+        // Check if user is logged in and has patient role
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const { data: { user }, error } = await supabase.auth.getUser();
+                if (user) {
+                    const patientNameEl = document.getElementById('patient-name');
+                    if (patientNameEl) {
+                        const firstName = user.user_metadata?.first_name || '';
+                        const lastName = user.user_metadata?.last_name || '';
+                        patientNameEl.textContent = firstName && lastName ? `${firstName} ${lastName}` : 'Patient';
+                    }
+                }
+            } catch (error) {
+                console.error('Error getting user data:', error);
+            }
+
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    logout();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

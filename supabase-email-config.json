@@ -1,0 +1,24 @@
+{
+  "auth": {
+    "email": {
+      "templates": {
+        "confirmation": {
+          "subject": "Confirm your Hospital Management System account",
+          "content_path": "./email-templates/confirmation.html"
+        },
+        "recovery": {
+          "subject": "Reset your Hospital Management System password",
+          "content_path": "./email-templates/recovery.html"
+        },
+        "magic_link": {
+          "subject": "Your magic link for Hospital Management System",
+          "content_path": "./email-templates/magic-link.html"
+        },
+        "invite": {
+          "subject": "You've been invited to Hospital Management System",
+          "content_path": "./email-templates/invite.html"
+        }
+      }
+    }
+  }
+}

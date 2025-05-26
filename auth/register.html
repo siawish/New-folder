@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://unpkg.com https://cdn.tailwindcss.com https://*.supabase.co; connect-src 'self' https://*.supabase.co; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https:; font-src 'self' data: https:;">
+    <title>Register - Hospital Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/healthcare-hospital-medical-44-svgrepo-com.svg">
+    <style>
+        .bg-medical-pattern {
+            background-color: #f0f9ff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .form-step {
+            transition: all 0.3s ease-in-out;
+        }
+        .role-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .role-card:hover {
+            transform: translateY(-5px);
+        }
+        .role-card.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-medical-pattern">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl w-full bg-white rounded-xl shadow-xl overflow-hidden" data-aos="zoom-in" data-aos-duration="800">
+            <div class="flex flex-col md:flex-row">
+                <!-- Left side - Image and info -->
+                <div class="md:w-1/2 bg-gradient-to-br from-blue-500 to-blue-700 p-8 text-white flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">Join Our Healthcare Community</h2>
+                        <p class="mb-8">Create an account to access our comprehensive Hospital Management System with features tailored to your role.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Secure patient data management</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Streamlined appointment scheduling</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Role-based access control</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Real-time updates and notifications</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <p class="mb-2">Already have an account?</p>
+                        <a href="login.html" class="inline-block px-6 py-2 border-2 border-white text-white rounded-md hover:bg-white hover:text-blue-600 transition duration-300">Sign In</a>
+                    </div>
+                </div>
+                
+                <!-- Right side - Form -->
+                <div class="md:w-1/2 p-8">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800">Create Account</h3>
+                        <a href="../index.html" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Back to Home
+                        </a>
+                    </div>
+                    
+                    <div id="auth-message" class="hidden"></div>
+                    <div id="loading" class="hidden flex justify-center">
+                        <div class="spinner"></div>
+                    </div>
+                    
+                    <!-- Auth message for notifications -->
+                    <div id="auth-message" class="hidden p-4 mb-4 text-sm rounded-lg"></div>
+                    
+                    <!-- Loading indicator -->
+                    <div id="loading" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+                        <div class="bg-white p-5 rounded-lg shadow-lg flex items-center">
+                            <svg class="animate-spin h-6 w-6 text-blue-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span class="text-gray-700">Processing...</span>
+                        </div>
+                    </div>
+                    
+                    <form id="register-form" class="space-y-6">
+                        <!-- Step 1: Basic Info -->
+                        <div id="step-1" class="form-step">
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                        <input id="first-name" name="first-name" type="text" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="John">
+                                    </div>
+                                    <div>
+                                        <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                        <input id="last-name" name="last-name" type="text" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Doe">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                    <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="john.doe@example.com">
+                                </div>
+                                
+                                <div>
+                                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                    <input id="password" name="password" type="password" autocomplete="new-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="••••••••">
+                                    <p class="mt-1 text-xs text-gray-500">Password must be at least 8 characters long</p>
+                                </div>
+                                
+                                <div>
+                                    <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                                    <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="••••••••">
+                                </div>
+                                
+                                <!-- Role-specific fields (initially hidden) -->
+                                <!-- Patient-specific fields -->
+                                <div id="patient-fields" class="hidden space-y-4 pt-4 border-t border-gray-200">
+                                    <h4 class="font-medium text-gray-800">Patient Information</h4>
+                                    
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label for="date-of-birth" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                            <input id="date-of-birth" name="date-of-birth" type="date" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        </div>
+                                        <div>
+                                            <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                                            <select id="gender" name="gender" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                                <option value="">Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                        <input id="phone" name="phone" type="tel" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="+1 (555) 123-4567">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                                        <textarea id="address" name="address" rows="2" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="123 Main St, City, State, ZIP"></textarea>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="blood-group" class="block text-sm font-medium text-gray-700 mb-1">Blood Group</label>
+                                        <select id="blood-group" name="blood-group" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                            <option value="">Select Blood Group</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="allergies" class="block text-sm font-medium text-gray-700 mb-1">Allergies</label>
+                                        <input id="allergies" name="allergies" type="text" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Separate allergies with commas">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="emergency-contact" class="block text-sm font-medium text-gray-700 mb-1">Emergency Contact</label>
+                                        <input id="emergency-contact" name="emergency-contact" type="text" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Name & Phone Number">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="medical-conditions" class="block text-sm font-medium text-gray-700 mb-1">Existing Medical Conditions</label>
+                                        <textarea id="medical-conditions" name="medical-conditions" rows="2" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="List any existing medical conditions"></textarea>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="insurance-provider" class="block text-sm font-medium text-gray-700 mb-1">Insurance Provider</label>
+                                        <input id="insurance-provider" name="insurance-provider" type="text" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Insurance Company Name">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="insurance-policy-number" class="block text-sm font-medium text-gray-700 mb-1">Insurance Policy Number</label>
+                                        <input id="insurance-policy-number" name="insurance-policy-number" type="text" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Policy Number">
+                                    </div>
+                                </div>
+                                
+
+                                
+
+                                
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-4">You are registering as a patient. Doctors and staff members are added by the hospital administration.</p>
+                                    <div class="border rounded-lg p-4 text-center bg-blue-50">
+                                        <svg class="w-8 h-8 mx-auto text-blue-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                        <h4 class="font-medium">Patient Registration</h4>
+                                    </div>
+                                    <input type="hidden" id="user-role" name="user-role" value="patient" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 transform hover:scale-105">
+                                    <span class="flex items-center">
+                                        Create Account
+                                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                            
+                            <p class="mt-4 text-center text-xs text-gray-600">
+                                By creating an account, you agree to our
+                                <a href="#" class="text-blue-600 hover:text-blue-800">Terms of Service</a> and
+                                <a href="#" class="text-blue-600 hover:text-blue-800">Privacy Policy</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase JS Library -->
+    <script src="../node_modules/@supabase/supabase-js/dist/umd/supabase.js"></script>
+    <!-- Supabase Config -->
+    <script src="../js/supabase-config.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Auth JS -->
+    <script src="../js/auth.js"></script>
+    
+    <script>
+        // Initialize AOS animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init();
+            
+            // Show patient fields automatically since it's the only option
+            const patientFields = document.getElementById('patient-fields');
+            if (patientFields) {
+                patientFields.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

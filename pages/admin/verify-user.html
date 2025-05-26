@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify User Email - Hospital Management System</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase Config -->
+    <script src="../../js/supabase-config.js"></script>
+    <script src="../../js/supabase-admin-config.js"></script>
+    <!-- Verify User Script -->
+    <script src="../../js/verify-user.js" defer></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Verify User Email</h1>
+            <p class="text-gray-600">Use this tool to manually verify a user's email in the Supabase auth system</p>
+        </div>
+        
+        <form id="verify-form" class="space-y-4">
+            <div>
+                <label for="user-id" class="block text-sm font-medium text-gray-700">User ID (UUID)</label>
+                <input type="text" id="user-id" name="user-id" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
+                    value="59de590d-57ce-4907-bfb7-d7a6d648556a" placeholder="Enter user UUID">
+            </div>
+            
+            <div>
+                <label for="user-email" class="block text-sm font-medium text-gray-700">User Email</label>
+                <input type="email" id="user-email" name="user-email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
+                    value="youthful.chinchilla.ylef@letterprotect.com" placeholder="Enter user email">
+            </div>
+            
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Verify User Email
+            </button>
+        </form>
+        
+        <div id="result" class="mt-6 p-4 rounded-md hidden">
+            <!-- Result will be displayed here -->
+        </div>
+        
+        <div class="mt-6 border-t pt-4">
+            <a href="dashboard.html" class="text-blue-600 hover:text-blue-800 flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('verify-form');
+            const resultDiv = document.getElementById('result');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const userId = document.getElementById('user-id').value.trim();
+                const userEmail = document.getElementById('user-email').value.trim();
+                
+                if (!userId || !userEmail) {
+                    showResult('Please enter both User ID and Email', 'error');
+                    return;
+                }
+                
+                try {
+                    // Show loading state
+                    showResult('Verifying user email... Please wait.', 'loading');
+                    
+                    // Call the verifyUserEmail function from verify-user.js
+                    const result = await window.verifyUserEmail(userId, userEmail);
+                    
+                    if (result.success) {
+                        showResult(`User ${userEmail} has been successfully verified!`, 'success');
+                    } else {
+                        showResult(`Error: ${result.error}`, 'error');
+                    }
+                } catch (error) {
+                    showResult(`Error: ${error.message || 'Unknown error occurred'}`, 'error');
+                }
+            });
+            
+            function showResult(message, type) {
+                resultDiv.innerHTML = message;
+                resultDiv.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800', 'bg-blue-100', 'text-blue-800');
+                
+                switch (type) {
+                    case 'success':
+                        resultDiv.classList.add('bg-green-100', 'text-green-800');
+                        break;
+                    case 'error':
+                        resultDiv.classList.add('bg-red-100', 'text-red-800');
+                        break;
+                    case 'loading':
+                        resultDiv.classList.add('bg-blue-100', 'text-blue-800');
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
